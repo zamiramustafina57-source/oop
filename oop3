@@ -1,0 +1,15 @@
+plugin_registry = {}
+
+class PluginMeta(type):
+    def __new__(cls, name, bases, attrs):
+        new_cls = super().__new__(cls, name, bases, attrs)
+        plugin_registry[name] = new_cls
+        return new_cls
+
+class MyPlugin(metaclass=PluginMeta):
+    pass
+
+class AnotherPlugin(metaclass=PluginMeta):
+    pass
+
+print(plugin_registry)
